@@ -59,14 +59,22 @@ $(document).ready(function()
 		$(".projectThumbnail").unbind("mouseleave");	
 	}
 	
+                  
+                  
+                  
 	// Page navigation
 	var isWorkCurrentPage = true;
 	var isAboutCurrentPage = false;
+                  var isPrivacyCurrentPage = false; // ZZZ
 	
 	$("#logoDetailView").click(function()
 	{
 		window.location = "../../index.html";
 	});
+                  
+                  
+                  
+                  
 	
 	$("#workPage, #logo").click(function()
 		{
@@ -74,13 +82,25 @@ $(document).ready(function()
 			{
 				isWorkCurrentPage = true;
 				isAboutCurrentPage = false;
+                isPrivacyCurrentPage = false; // ZZZ
+                                
+                                
 				$("#workPage").attr("class", "currentPage");
 				$("#aboutPage").removeClass("currentPage");
+                $("#privacyPage").removeClass("currentPage"); // ZZZ
 				
 				$("#about").fadeOut(500, function()
 				{
 					$("#work").fadeIn(500);
 				});
+                                
+                                // ZZZ begin
+                                $("#privacy").fadeOut(500, function()
+                                                      {
+                                                      $("#work").fadeIn(500);
+                                                      
+                                                      });
+                                // ZZZ end
 			}
 		});
 	
@@ -90,15 +110,62 @@ $(document).ready(function()
 			{
 				isAboutCurrentPage = true;
 				isWorkCurrentPage = false;
+                          isPrivacyCurrentPage = false; // ZZZ
 				$("#aboutPage").attr("class", "currentPage");
 				$("#workPage").removeClass("currentPage");
+                          $("#privacyPage").removeClass("currentPage"); // ZZZ
 				
 				$("#work").fadeOut(500, function()
 				{
 					$("#about").fadeIn(500);
 				});
+                          
+                          // ZZZ begin
+                          
+                          $("#privacy").fadeOut(500, function()
+                                                {
+                                                $("#work").fadeIn(500);
+                                                
+                                                });
+                          
+                          
+                          // ZZZ end
+                          
 			}
 		});
+                  
+                  // ZZZ begin
+                  $("#privacyPage").click(function()
+                                        {
+                                        if(!isPrivacyCurrentPage)
+                                        {
+                                        isAboutCurrentPage = false;
+                                        isWorkCurrentPage = false;
+                                        isPrivacyCurrentPage = true;
+                                        $("#privacyPage").attr("class", "currentPage");
+                                        $("#aboutPage").removeClass("currentPage");
+                                          $("#workPage").removeClass("currentPage");
+                                        
+                                        $("#about").fadeOut(500, function()
+                                                           {
+                                                           $("#privacy").fadeIn(500);
+                                                           });
+                                        
+                                        
+                                        $("#work").fadeOut(500, function()
+                                                              {
+                                                              $("#privacy").fadeIn(500);
+                                                              
+                                                              });
+                                        
+                                        
+                                        
+                                        }
+                                        });
+                  
+                  
+                  // ZZZ end
+
 	
 	// Make Work page current page
 	$("#workPage").attr("class", "currentPage");
@@ -106,6 +173,9 @@ $(document).ready(function()
 	// Hide About page
 	//$("#about").css("display", "none");
 	$("#about").fadeOut(0);
+                  
+    
+                  $("#privacy").fadeOut(0); // ZZZ
 	
 	// For site fade site in
 	$(".container").css("display", "none");
